@@ -1,0 +1,6 @@
+int32 modo
+string sentido
+---
+string resultado
+int32 modo_actual
+bool exito
