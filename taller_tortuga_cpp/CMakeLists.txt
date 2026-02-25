@@ -14,16 +14,16 @@ find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(rosidl_default_runtime REQUIRED)
 
-# Servicio
+
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/CambiarModo.srv"
   DEPENDENCIES std_msgs
 )
 
-# Ejecutable
+
 add_executable(controlador src/controlador.cpp)
 
-# DEPENDENCIAS COMPLETAS
+
 ament_target_dependencies(controlador
   rclcpp
   rclcpp_components
@@ -32,14 +32,14 @@ ament_target_dependencies(controlador
   std_msgs
 )
 
-# LINK con la librería del servicio (¡ESTO ES CLAVE!)
+
 target_link_libraries(controlador
   ${PROJECT_NAME}__rosidl_generator_cpp
   ${PROJECT_NAME}__rosidl_typesupport_cpp
   ${PROJECT_NAME}__rosidl_typesupport_introspection_cpp
 )
 
-# Forzar dependencia
+
 add_dependencies(controlador ${PROJECT_NAME})
 
 install(TARGETS controlador DESTINATION lib/${PROJECT_NAME})
